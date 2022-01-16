@@ -21,6 +21,7 @@ class SubscriptionConverter
 
 	public function convert(Subscription $subscription): array
 	{
+		// @TODO: Add transaction fees and tax amount
 		return [
 			"type" => "subscription",
 			"subscription_external_id" => $subscription->getPaddleId(),

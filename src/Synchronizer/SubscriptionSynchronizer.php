@@ -4,11 +4,9 @@ namespace App\Synchronizer;
 
 use App\Converter\PaymentConverter;
 use App\Converter\SubscriptionConverter;
-use App\Entity\DataSource;
 use App\Entity\Subscription;
 use App\Entity\User;
 use ChartMogul\Subscription as ChartMogulSubscription;
-use DateTime;
 use Paddle\API;
 
 class SubscriptionSynchronizer
@@ -16,7 +14,6 @@ class SubscriptionSynchronizer
 	public function __construct(
 		private SubscriptionConverter $subscriptionConverter,
 		private PaymentConverter $paymentConverter,
-		private PaymentSynchronizer $paymentSynchronizer,
 	)
 	{
 	}
@@ -32,5 +29,20 @@ class SubscriptionSynchronizer
 		}, $availableSubscriptionsData);
 		
 		return $subscriptions;
+	}
+
+	public function cancel(Subscription $subscription): void
+	{
+		/** @var ChartMogulSubscription|null $chartMogulSubscription */
+		$chartMogulSubscription = ChartMogulSubscription::all([
+			"customer_uuid" => $subscription->getCustomer()->getChartMogulId(),
+			"external_id" => $subscription->getPaddleId(),
+		])->first();
+		
+		if ($chartMogulSubscription) {
+			$chartMogulSubscription->cancel(date("Y-m-d"));
+		}
+		
+		$subscription->setState("deleted");
 	}
 }

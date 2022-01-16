@@ -39,7 +39,6 @@ class Synchronizer
 		$this->syncPlans();
 		$this->syncSubscriptions();
 
-
 		$user->setLastSyncDate(new DateTime());
 		$this->entityManager->persist($user);
 
@@ -80,7 +79,7 @@ class Synchronizer
 
 		/** @var ChartMogulDataSource $rawDataSource */
 		$rawDataSource = ChartMogulDataSource::create([
-			"name" => "Paddle to ChartMogul Synchronization"
+			"name" => "Paddle to ChartMogul synchronization"
 		]);
 
 		$dataSource = (new DataSource())
@@ -110,12 +109,21 @@ class Synchronizer
 
 	private function syncSubscriptions()
 	{
+		$subscriptionsToCancel = [];
+		foreach ($this->user->getSubscriptions()->toArray() as $existingSubscription) {
+			$subscriptionsToCancel[$existingSubscription->getId()] = $existingSubscription;
+		}
+		
 		// First, create/sync customers
 		$subscriptions = $this->subscriptionSynchronizer->fetch($this->user, $this->paddle);
 		foreach ($subscriptions as $subscription) {
 			$syncedCustomer = $this->customerSynchronizer->sync($subscription->getCustomer(), $this->dataSource);
 			$this->entityManager->persist($syncedCustomer);
 			$this->entityManager->persist($subscription);
+
+			if ($subscription->getState() == "active" && isset($subscriptionsToCancel[$subscription->getId()])) {
+				unset($subscriptionsToCancel[$subscription->getId()]);
+			}
 		}
 		$this->entityManager->flush();
 		
@@ -123,12 +131,20 @@ class Synchronizer
 		$payments = $this->paymentSynchronizer->fetch($this->user, $this->paddle);
 
 		foreach ($payments as $payment) {
-			// First, fetch & sync the actual subscription
-			$syncedPayment = $this->paymentSynchronizer->sync($payment, $this->dataSource);
-
-			if ($syncedPayment) {
-				$this->entityManager->persist($syncedPayment);
+			// If a payment can't be associated to a subscription, we can't sync it.
+			if (!$payment->getSubscription()) {
+				$this->user->removePayment($payment);
+				continue;
 			}
+
+			$syncedPayment = $this->paymentSynchronizer->sync($payment, $this->dataSource);
+			$this->entityManager->persist($syncedPayment);
 		}
+
+		// Finally, process cancellations
+		foreach ($subscriptionsToCancel as $subscriptionToCancel) {
+			$this->subscriptionSynchronizer->cancel($subscriptionToCancel);
+			$this->entityManager->persist($subscriptionToCancel);
+		} 
 	}
 }

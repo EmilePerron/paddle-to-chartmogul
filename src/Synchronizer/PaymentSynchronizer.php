@@ -43,16 +43,11 @@ class PaymentSynchronizer
 	public function sync(Payment $payment, DataSource $dataSource): ?Payment
 	{
 		// If the transaction has already been imported, there's nothing else to do.
-        if ($payment->getSynced()) {
+        if ($payment->getSynced() || $payment->getChartMogulId()) {
         	return $payment;
         }
 
 		$subscription = $payment->getSubscription();
-
-		if (!$subscription) {
-			return null;
-		}
-
 		$subscription->setLastSyncDate(new DateTime());
 		
 		// Create the subscription if it doesn't exist
@@ -80,6 +75,7 @@ class PaymentSynchronizer
 		$payment->setChartMogulId($invoice->uuid)
 			->setSynced(true)
 			->setLastSyncDate(new DateTime());
+		$subscription->getOwner()->addPayment($payment);
 		
 		return $payment;
 	}
