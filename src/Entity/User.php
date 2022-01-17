@@ -57,6 +57,9 @@ class User implements UserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Payment::class, orphanRemoval: true)]
     private $payments;
 
+    #[ORM\Column(type: 'string', length: 15, nullable: true)]
+    private $frequency;
+
     public function __construct()
     {
         $this->plans = new ArrayCollection();
@@ -65,6 +68,7 @@ class User implements UserInterface
         $this->lastLoginDate = new DateTime();
         $this->customers = new ArrayCollection();
         $this->payments = new ArrayCollection();
+		$this->frequency = "1 day";
     }
 
     public function getId(): ?int
@@ -338,13 +342,31 @@ class User implements UserInterface
         return $this;
     }
 
-	public function hasConfiguredPaddle(): bool
-	{
-		return $this->getPaddleApiKey() && $this->getPaddleVendorId();
-	}
+    public function hasConfiguredPaddle(): bool
+    {
+        return $this->getPaddleApiKey() && $this->getPaddleVendorId();
+    }
 
-	public function hasConfiguredChartMogul(): bool
-	{
-		return $this->getChartMogulApiKey();
-	}
+    public function hasConfiguredChartMogul(): bool
+    {
+        return $this->getChartMogulApiKey();
+    }
+
+    /**
+     * @return string|null A valid PHP DateTime modifier without prefix (ex.: 1 day)
+     */
+    public function getFrequency(): ?string
+    {
+        return $this->frequency;
+    }
+
+    /**
+     * @param string|null $frequency A valid PHP DateTime modifier without prefix (ex.: 1 day)
+     */
+    public function setFrequency(?string $frequency): self
+    {
+        $this->frequency = $frequency;
+
+        return $this;
+    }
 }

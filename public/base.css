@@ -12,9 +12,9 @@ h1 { margin: 0; margin-bottom: 1rem; font-weight: 900; }
 
 label { display: block; margin-bottom: 3px; font-weight: 600; line-height: 1.35; color: #222; }
 
-input { display: block; width: 100%; padding: .75rem 1rem; margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.35; border: 1px solid #ccc; border-radius: .25rem; transition: border-color .25s ease; }
-input:hover { border-color: #bfa5cd; }
-input:focus { border-color: #000000; outline: 1px solid #000000; }
+input, select { display: block; width: 100%; padding: .75rem 1rem; margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.35; border: 1px solid #ccc; border-radius: .25rem; transition: border-color .25s ease; }
+input:hover, select:hover { border-color: #bfa5cd; }
+input:focus, select:focus { border-color: #000000; outline: 1px solid #000000; }
 
 button { display: inline-block; padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.35; color: white; background-color: black; border: 2px solid black; border-radius: .25rem; cursor: pointer; }
 button:hover { color: #edff5f; }
