@@ -354,7 +354,7 @@ class User implements UserInterface
 
     public function hasConfiguredChartMogul(): bool
     {
-        return $this->getChartMogulApiKey();
+        return !!$this->getChartMogulApiKey();
     }
 
     /**
@@ -379,8 +379,8 @@ class User implements UserInterface
     {
         return match ($this->frequency) {
             "1 day" => "every day",
-                           "1 hour" => "every hour",
-                           "15 minutes" => "every 15 minutes",
+			"1 hour" => "every hour",
+			"15 minutes" => "every 15 minutes",
         };
     }
 
