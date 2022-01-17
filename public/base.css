@@ -25,3 +25,5 @@ button:active { color: black; background-color: #edff5f; border-color: #edff5f; 
 .notice a:hover { color: #333; }
 .notice.warning { background-color: #ffe7a7; background-image: linear-gradient(185deg, #ffe7a7, #ffc58e); }
 .notice.danger { background-color: #ffe7a7; background-image: linear-gradient(185deg, #ffc2c2, #f97b8b); }
+.notice.success { background-color: #e5ffbd; background-image: linear-gradient(185deg, #e5ffbd, #bdffbd); }
+.card > .notice:first-child { margin-top: 0; }

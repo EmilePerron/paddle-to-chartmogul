@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Notifier\NotifierInterface;
@@ -37,14 +38,17 @@ class AppController extends AbstractController
     /**
      * @Route("/app/settings", name="settings")
      */
-    public function settings(Request $request)
+    public function settings(Request $request, EntityManagerInterface $entityManager)
     {
 		$user = $this->getUser();
 		$form = $this->createForm(UserType::class, $user);
 		$form->handleRequest($request);
 
-		if ($form->isSubmitted()) {
+		if ($form->isSubmitted() && $form->isValid()) {
+			$entityManager->persist($user);
+			$entityManager->flush();
 
+			$this->addFlash("success", "Your settings have been saved!");
 		}
 
         return $this->render('app/settings.html.twig', [
