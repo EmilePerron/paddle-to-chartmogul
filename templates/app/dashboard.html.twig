@@ -15,7 +15,7 @@
 		{% endif %}
 	{% else %}
 		<p>Looks like you're all set!</p>
-		<p>Your Paddle subscriptions will be synced to ChartMogul <strong>every day</strong> around midnight (EST/DST time).</p>
+		<p>Your Paddle subscriptions will be synced to ChartMogul <strong>{{ app.user.frequencyHumanLabel }}</strong>.</p>
 		<p>To change of your settings or information, check out the <a href="{{ path("settings") }}">settings page</a>.</p>
 	{% endif %}
 {% endblock %}

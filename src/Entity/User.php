@@ -365,8 +365,17 @@ class User implements UserInterface
      */
     public function setFrequency(?string $frequency): self
     {
-        $this->frequency = $frequency;
+        $this->frequency = $frequency ?: "1 day";
 
         return $this;
     }
+
+	public function getFrequencyHumanLabel(): string
+	{
+		return match($this->frequency) {
+			"1 day" => "every day",
+			"1 hour" => "every hour",
+			"15 minutes" => "every 15 minutes",
+		};
+	}
 }
