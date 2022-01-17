@@ -1,0 +1,21 @@
+{% extends 'app_base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+	<h1>Dashboard</h1>
+
+	{% if not (app.user.hasConfiguredPaddle() and app.user.hasConfiguredChartMogul()) %}
+		{% if not (app.user.hasConfiguredPaddle() and app.user.hasConfiguredChartMogul()) %}
+			<div class="notice warning">To get started, you'll need to <a href="{{ path("settings") }}">set up your Paddle & ChartMogul API keys</a>.</div>
+		{% elseif not app.user.hasConfiguredPaddle() %}
+			<div class="notice warning">To get started, you'll need to <a href="{{ path("settings") }}">set up your Paddle API keys</a>.</div>
+		{% elseif not app.user.hasConfiguredChartMogul() %}
+			<div class="notice warning">To get started, you'll need to <a href="{{ path("settings") }}">set up your Chart Mogul API key</a>.</div>
+		{% endif %}
+	{% else %}
+		<p>Looks like you're all set!</p>
+		<p>Your Paddle subscriptions will be synced to ChartMogul <strong>every day</strong> around midnight (EST/DST time).</p>
+		<p>To change of your settings or information, check out the <a href="{{ path("settings") }}">settings page</a>.</p>
+	{% endif %}
+{% endblock %}

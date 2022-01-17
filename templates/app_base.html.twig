@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset("base.css") }}">
+        <link rel="stylesheet" href="{{ asset("app.css") }}">
+
+        {% block stylesheets %}
+
+        {% endblock %}
+    </head>
+    <body>
+
+		<div class="container">
+			<div id="app">
+				<nav>
+					<a href="{{ path("dashboard") }}" aria-current="{{ "dashboard" == app.request.get('_route') ? "true" : "false" }}">Dashboard</a>
+					<a href="{{ path("settings") }}" aria-current="{{ "settings" == app.request.get('_route') ? "true" : "false" }}">Settings</a>
+					<a href="{{ path("app_logout") }}">Log out</a>
+				</nav>
+				<div class="card">
+					{% block body %}{% endblock %}
+				</div>
+			</div>
+		</div>
+
+        {% block javascripts %}
+
+        {% endblock %}
+    </body>
+</html>

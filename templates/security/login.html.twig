@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container small">
+		<div class="card">
+			<h1>Log in</h1>
+			<p class="help-text">Don't have an account?<br> That's okay: this will create one for you!</p>
+
+			<form action="{{ path('login') }}" method="POST">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+				
+				<button type="submit"><span aria-hidden="true">✨</span> Email me my magic link! <span aria-hidden="true">✨</span></button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

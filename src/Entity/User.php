@@ -337,4 +337,14 @@ class User implements UserInterface
 
         return $this;
     }
+
+	public function hasConfiguredPaddle(): bool
+	{
+		return $this->getPaddleApiKey() && $this->getPaddleVendorId();
+	}
+
+	public function hasConfiguredChartMogul(): bool
+	{
+		return $this->getChartMogulApiKey();
+	}
 }

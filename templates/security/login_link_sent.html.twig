@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container small">
+		<div class="card">
+			<h1>Check your email!</h1>
+			<p>You should receive your ✨ <i>magic link</i> ✨ momentarily!</p>
+
+			<p>Didn't receive an email? No worries: go back to <a href="{{ path('login') }}">login</a> and try again!</p>
+		</div>
+	</div>
+{% endblock %}

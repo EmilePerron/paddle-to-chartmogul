@@ -1,0 +1,27 @@
+html, body { height: 100%; padding: 0; margin: 0; font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif; font-size: 100%; background-color: #c0e8ff; box-sizing: border-box; }
+body { height: auto; min-height: 100%; background-image: linear-gradient(45deg, #d288f1, #9adaff); background-size: cover; background-repeat: no-repeat; }
+* { font-family: inherit; box-sizing: inherit; }
+
+h1 { margin: 0; margin-bottom: 1rem; font-weight: 900; }
+
+.help-text { font-weight: 300; color: #767676; }
+
+.container { width: 95%; max-width: 640px; padding: 3rem 0; margin: auto; }
+.container.small { max-width: 440px; }
+.card { width: 100%; padding: 3rem; background-color: white; border-radius: 1.5rem; box-shadow: 0 6px 10px 0 rgb(22 36 52 / 10%), 0 6px 5px 3px rgb(22 36 52 / 3%), 0 10px 30px 30px rgb(22 36 52 / 2%); }
+
+label { display: block; margin-bottom: 3px; font-weight: 600; line-height: 1.35; color: #222; }
+
+input { display: block; width: 100%; padding: .75rem 1rem; margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.35; border: 1px solid #ccc; border-radius: .25rem; transition: border-color .25s ease; }
+input:hover { border-color: #bfa5cd; }
+input:focus { border-color: #000000; outline: 1px solid #000000; }
+
+button { display: inline-block; padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.35; color: white; background-color: black; border: 2px solid black; border-radius: .25rem; cursor: pointer; }
+button:hover { color: #edff5f; }
+button:active { color: black; background-color: #edff5f; border-color: #edff5f;  }
+
+.notice { padding: 1rem; margin: 1rem 0; background-color: #bde7ff; background-image: linear-gradient(185deg, #bde7ff, #d1eeff); background-size: cover; border-radius: .5rem; }
+.notice a { font-weight: 500; color: #000; }
+.notice a:hover { color: #333; }
+.notice.warning { background-color: #ffe7a7; background-image: linear-gradient(185deg, #ffe7a7, #ffc58e); }
+.notice.danger { background-color: #ffe7a7; background-image: linear-gradient(185deg, #ffc2c2, #f97b8b); }

@@ -15,7 +15,7 @@ class TestController extends AbstractController
     public function index(Synchronizer $synchronizer, UserRepository $userRepository): Response
     {
         $user = $userRepository->find(2);
-        
+
         $synchronizer->sync($user);
 
         die();

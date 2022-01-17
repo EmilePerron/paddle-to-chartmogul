@@ -1,7 +1,7 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.0.2",
@@ -46,9 +46,10 @@
         "symfony/validator": "6.0.*",
         "symfony/web-link": "6.0.*",
         "symfony/webapp-meta": "^1.0",
-        "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "6.0.*",
-        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/cssinliner-extra": "^3.3",
+        "twig/extra-bundle": "^3.3",
+        "twig/inky-extra": "^3.3",
         "twig/twig": "^2.12|^3.0"
     },
     "config": {
