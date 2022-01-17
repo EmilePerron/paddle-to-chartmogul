@@ -24,7 +24,7 @@ class UserType extends AbstractType
 			])
             ->add("paddleVendorId", null, ["label" => "Paddle Vendor ID"])
             ->add("paddleApiKey", null, ["label" => "Paddle API key"])
-            ->add("chartMogulApiKey", null, ["label" => "Chart Mogul API key"])
+            ->add("chartMogulApiKey", null, ["label" => "ChartMogul API key"])
 			->add("submit", SubmitType::class, ["label" => "Save changes  💾"])
         ;
     }
