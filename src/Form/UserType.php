@@ -13,7 +13,6 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add("email")
             ->add("paddleVendorId", null, ["label" => "Paddle Vendor ID"])
             ->add("paddleApiKey", null, ["label" => "Paddle API key"])
             ->add("chartMogulApiKey", null, ["label" => "Chart Mogul API key"])
