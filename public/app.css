@@ -1,3 +1,8 @@
 nav { display: flex; width: 100%; margin-bottom: .5rem; }
 nav a { display: block; padding: .5rem; flex: 1; text-align: center; color: #000; }
 nav a[aria-current="true"] { text-decoration: none; font-weight: 500; color: #400e56; }
+
+#logs { list-style: none; padding: 0; }
+#logs summary { margin-top: 0; cursor: pointer; }
+#logs summary:hover { opacity: .8; }
+#logs .log-content { padding-left: 2rem; padding-bottom: 2rem; }

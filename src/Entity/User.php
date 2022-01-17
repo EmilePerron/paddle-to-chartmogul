@@ -60,6 +60,10 @@ class User implements UserInterface
     #[ORM\Column(type: 'string', length: 15, nullable: true)]
     private $frequency;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SyncLog::class, orphanRemoval: true)]
+    #[ORM\OrderBy(["startDate" => "DESC"])]
+    private $syncLogs;
+
     public function __construct()
     {
         $this->plans = new ArrayCollection();
@@ -68,7 +72,8 @@ class User implements UserInterface
         $this->lastLoginDate = new DateTime();
         $this->customers = new ArrayCollection();
         $this->payments = new ArrayCollection();
-		$this->frequency = "1 day";
+        $this->frequency = "1 day";
+        $this->syncLogs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -370,12 +375,42 @@ class User implements UserInterface
         return $this;
     }
 
-	public function getFrequencyHumanLabel(): string
-	{
-		return match($this->frequency) {
-			"1 day" => "every day",
-			"1 hour" => "every hour",
-			"15 minutes" => "every 15 minutes",
-		};
-	}
+    public function getFrequencyHumanLabel(): string
+    {
+        return match ($this->frequency) {
+            "1 day" => "every day",
+                           "1 hour" => "every hour",
+                           "15 minutes" => "every 15 minutes",
+        };
+    }
+
+    /**
+     * @return Collection|SyncLog[]
+     */
+    public function getSyncLogs(): Collection
+    {
+        return $this->syncLogs;
+    }
+
+    public function addSyncLog(SyncLog $syncLog): self
+    {
+        if (!$this->syncLogs->contains($syncLog)) {
+            $this->syncLogs[] = $syncLog;
+            $syncLog->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSyncLog(SyncLog $syncLog): self
+    {
+        if ($this->syncLogs->removeElement($syncLog)) {
+            // set the owning side to null (unless already changed)
+            if ($syncLog->getUser() === $this) {
+                $syncLog->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }

@@ -3,6 +3,9 @@ body { height: auto; min-height: 100%; background-image: linear-gradient(45deg, 
 * { font-family: inherit; box-sizing: inherit; }
 
 h1 { margin: 0; margin-bottom: 1rem; font-weight: 900; }
+h2 { margin: 0; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 800; }
+
+hr { margin: 3rem 0; height: 1px; background-color: #eee; border: none; }
 
 .help-text { font-weight: 300; color: #767676; }
 
@@ -23,6 +26,7 @@ button:active { color: black; background-color: #edff5f; border-color: #edff5f; 
 .notice { padding: 1rem; margin: 1rem 0; background-color: #bde7ff; background-image: linear-gradient(185deg, #bde7ff, #d1eeff); background-size: cover; border-radius: .5rem; }
 .notice a { font-weight: 500; color: #000; }
 .notice a:hover { color: #333; }
+.notice.gray { background-color: #ebebeb; background-image: linear-gradient(185deg, #f9f9f9, #ebebeb); }
 .notice.warning { background-color: #ffe7a7; background-image: linear-gradient(185deg, #ffe7a7, #ffc58e); }
 .notice.danger { background-color: #ffe7a7; background-image: linear-gradient(185deg, #ffc2c2, #f97b8b); }
 .notice.success { background-color: #e5ffbd; background-image: linear-gradient(185deg, #e5ffbd, #bdffbd); }

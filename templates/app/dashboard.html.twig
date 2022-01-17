@@ -18,4 +18,31 @@
 		<p>Your Paddle subscriptions will be synced to ChartMogul <strong>{{ app.user.frequencyHumanLabel }}</strong>.</p>
 		<p>To change of your settings or information, check out the <a href="{{ path("settings") }}">settings page</a>.</p>
 	{% endif %}
+
+	<hr>
+
+	<h2>Recent syncs</h2>
+
+	{% if app.user.syncLogs|length %}
+		<ol id="logs">
+			{% for log in app.user.syncLogs|slice(0, 5) %}
+				<li>
+					<details>
+						<summary class="notice {{ log.failed ? "danger" : "" }}">
+							{{ log.startDate|date("Y-m-d H:i:s T") }}
+
+							{% if not log.endDate %}
+								<span class="help-text">(in progress)</span>
+							{% endif %}
+						</summary>
+						<div class="help-text log-content">
+							{{ log.content|nl2br }}
+						</div>
+					</details>
+				</li>
+			{% endfor %}
+		</ol>
+	{% else %}
+		<div class="notice gray">Your Paddle subscriptions have not been synced yet.</div>
+	{% endif %}
 {% endblock %}
