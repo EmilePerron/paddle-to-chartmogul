@@ -28,7 +28,7 @@
 			{% for log in app.user.syncLogs|slice(0, 5) %}
 				<li>
 					<details>
-						<summary class="notice {{ log.failed ? "danger" : "" }}">
+						<summary class="notice {{ log.failed ? "danger" : (log.endDate ? "success" : "") }}">
 							{{ log.startDate|date("Y-m-d H:i:s T") }}
 
 							{% if not log.endDate %}
