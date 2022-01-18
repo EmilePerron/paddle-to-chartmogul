@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SyncLogRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SyncLogRepository::class)]
@@ -28,6 +29,16 @@ class SyncLog
 
     #[ORM\Column(type: 'boolean')]
     private $hasFailed;
+
+	public function __construct(?User $user = null)
+	{
+		$this->startDate = new DateTime();
+		$this->hasFailed = false;
+
+		if ($user) {
+			$this->user = $user;
+		}
+	}
 
     public function getId(): ?int
     {

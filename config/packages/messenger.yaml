@@ -10,7 +10,7 @@ framework:
                     use_notify: true
                     check_delayed_interval: 60000
                 retry_strategy:
-                    max_retries: 3
+                    max_retries: 0
                     multiplier: 2
             failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
@@ -19,6 +19,7 @@ framework:
             Symfony\Component\Mailer\Messenger\SendEmailMessage: async
             Symfony\Component\Notifier\Message\ChatMessage: async
             Symfony\Component\Notifier\Message\SmsMessage: async
+            App\Message\SyncRequest: async
 
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
