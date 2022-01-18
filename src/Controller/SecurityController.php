@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Notifier\NotifierInterface;
@@ -33,7 +35,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function requestLoginLink(NotifierInterface $notifier, LoginLinkHandlerInterface $loginLinkHandler, UserRepository $userRepository, Request $request)
+    public function requestLoginLink(NotifierInterface $notifier, LoginLinkHandlerInterface $loginLinkHandler, UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request)
     {
         if ($this->isGranted("IS_AUTHENTICATED_FULLY")) {
             return $this->redirectToRoute("dashboard");
@@ -44,6 +46,13 @@ class SecurityController extends AbstractController
             // load the user in some way (e.g. using the form input)
             $email = $request->request->get('email');
             $user = $userRepository->findOneBy(['email' => $email]);
+
+			if (!$user) {
+				$user = (new User())
+					->setEmail($email);
+				$entityManager->persist($user);
+				$entityManager->flush();
+			}
 
             // create a login link for $user this returns an instance
             // of LoginLinkDetails
