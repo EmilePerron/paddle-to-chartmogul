@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use App\Repository\PlanRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,6 +16,7 @@ class Plan
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Encrypted]
     private $paddleId;
 
     #[ORM\Column(type: 'string', length: 512)]
@@ -36,6 +38,7 @@ class Plan
     private $trialDays;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+	#[Encrypted]
     private $chartMogulId;
 
     #[ORM\Column(type: 'datetime', nullable: true)]

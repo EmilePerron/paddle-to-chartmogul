@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use App\Repository\PaymentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,6 +16,7 @@ class Payment
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Encrypted]
     private $paddleId;
 
     #[ORM\ManyToOne(targetEntity: Subscription::class)]
@@ -43,6 +45,7 @@ class Payment
     private $lastSyncDate;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+	#[Encrypted]
     private $chartMogulId;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'payments')]

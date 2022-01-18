@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use App\Repository\DataSourceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,6 +18,7 @@ class DataSource
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Encrypted]
     private $chartMogulId;
 
     #[ORM\OneToOne(inversedBy: 'dataSource', targetEntity: User::class, cascade: ['persist', 'remove'])]

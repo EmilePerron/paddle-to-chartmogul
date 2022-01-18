@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,12 +16,14 @@ class Customer
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Encrypted]
     private $paddleId;
 
     #[ORM\Column(type: 'string', length: 512)]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+	#[Encrypted]
     private $chartMogulId;
 
     #[ORM\Column(type: 'datetime', nullable: true)]

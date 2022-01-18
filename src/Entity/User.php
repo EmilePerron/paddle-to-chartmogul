@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -25,12 +26,15 @@ class User implements UserInterface
     private $roles = [];
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+	#[Encrypted]
     private $paddleVendorId;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+	#[Encrypted]
     private $paddleApiKey;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+	#[Encrypted]
     private $chartMogulApiKey;
 
     #[ORM\Column(type: 'datetime')]
