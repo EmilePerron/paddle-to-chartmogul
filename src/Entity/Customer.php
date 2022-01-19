@@ -20,6 +20,7 @@ class Customer
     private $paddleId;
 
     #[ORM\Column(type: 'string', length: 512)]
+	#[Encrypted]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
