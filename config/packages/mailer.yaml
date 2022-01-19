@@ -2,6 +2,6 @@ framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
         envelope:
-            sender: 'saasync by Koalati <noreply@koalati.com>'
+            sender: 'magicrr by Koalati <noreply@koalati.com>'
         headers:
-            from: 'saasync by Koalati <noreply@koalati.com>'
+            from: 'magicrr by Koalati <noreply@koalati.com>'

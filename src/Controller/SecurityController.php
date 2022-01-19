@@ -60,7 +60,7 @@ class SecurityController extends AbstractController
             $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
             $notification = new CustomLoginLinkNotification(
                 $loginLinkDetails,
-                'Your saasync ✨ magic link ✨ has arrived!',
+                'Your magicrr ✨ magic link ✨ has arrived!',
             );
             // create a recipient for this user
             $recipient = new Recipient($user->getEmail());
