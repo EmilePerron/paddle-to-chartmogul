@@ -10,6 +10,7 @@ h2 { margin: 0; margin-bottom: 1rem; font-size: 1.35rem; font-weight: 800; }
 hr { margin: 3rem 0; height: 1px; background-color: #eee; border: none; }
 
 .help-text { font-weight: 300; color: #767676; }
+.text-center { text-align: center; }
 
 .container { width: 95%; max-width: 640px; padding: 3rem 0; margin: auto; }
 .container.small { max-width: 440px; }
@@ -21,9 +22,12 @@ input, select { display: block; width: 100%; padding: .75rem 1rem; margin-bottom
 input:hover, select:hover { border-color: #bfa5cd; }
 input:focus, select:focus { border-color: #000000; outline: 1px solid #000000; }
 
-button { display: inline-block; padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.35; color: white; background-color: black; border: 2px solid black; border-radius: .25rem; cursor: pointer; }
-button:hover { color: #edff5f; }
-button:active { color: black; background-color: #edff5f; border-color: #edff5f;  }
+button,
+.button { display: inline-block; padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.35; text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: .25rem; cursor: pointer; }
+button:hover,
+.button:hover { color: #edff5f; }
+button:active,
+.button:active { color: black; background-color: #edff5f; border-color: #edff5f;  }
 
 .notice { padding: 1rem; margin: 1rem 0; background-color: #bde7ff; background-image: linear-gradient(185deg, #bde7ff, #d1eeff); background-size: cover; border-radius: .5rem; }
 .notice a { font-weight: 500; color: #000; }
