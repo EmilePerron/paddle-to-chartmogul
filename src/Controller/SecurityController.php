@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Notifier\CustomLoginLinkNotification;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,7 +58,7 @@ class SecurityController extends AbstractController
             // create a login link for $user this returns an instance
             // of LoginLinkDetails
             $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
-            $notification = new LoginLinkNotification(
+            $notification = new CustomLoginLinkNotification(
                 $loginLinkDetails,
                 'Login to Paddle 2 ChartMogul',
             );

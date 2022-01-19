@@ -1,0 +1,23 @@
+{% extends "email/base.html.twig" %}
+
+{%- block body -%}
+	<spacer size="20"></spacer>
+
+	<row>
+		<columns>
+			<h1>Hey there!</h1>
+
+			<p>Here is the ✨ <i>magic link</i> ✨ you requested.</p>
+			<p>Cheers!</p>
+
+			<spacer size="10"></spacer>
+
+			<button href="{{ action_url }}" size="large">Log in to saasync</button>
+
+			<spacer size="10"></spacer>
+
+			<p class="text-gray">P.S.:<br>If you did not request a magic link, you may ignore this email - we apologize for any inconvenience.</p>
+			<p class="text-gray">P.P.S.:<br>Looking for a way to improve your SaaS's website? Check out <a href="https://koalati.com?utm_source=saasync&utm_medium=email">Koalati</a>, a web quality control platform from the makers of saasync!</p>
+		</columns>
+	</row>
+{%- endblock -%}

@@ -12,6 +12,12 @@
     </head>
     <body>
 		<div class="container">
+			<div id="logo-wrapper">
+				<a href="/">
+					<img src="{{ asset("images/logo.png") }}" alt="saasync" height="100">
+				</a>
+			</div>
+
 			<div id="app">
 				<nav>
 					<a href="{{ path("dashboard") }}" aria-current="{{ "dashboard" == app.request.get('_route') ? "true" : "false" }}">Dashboard</a>

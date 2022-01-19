@@ -1,0 +1,30 @@
+{%- apply inky_to_html|inline_css(source("@email-styles/foundation.css"), source("@email-styles/main.css")) -%}
+	<style>
+		html, body { font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif; }
+		* { font-family: inherit; }
+		hr { width: 100%; height: 1px; margin: 25px 0; background-color: #f4f4f4; border: none; }
+	</style>
+	<row>
+		<spacer size-sm="15" size-lg="30"></spacer>
+		<center>
+			<img src="{{ email.image('@email-images/logo.png') }}" alt="saasync" height="70" style="width: auto; height: 70px;" loading="lazy">
+		</center>
+		<spacer size-sm="15" size-lg="30"></spacer>
+	</row>
+	<container>
+		{% block body %}{% endblock %}
+	</container>
+	<spacer size-sm="15" size-lg="30"></spacer>
+	<row>
+		<center>
+			<div class="legal">
+				saasync is a tool provided by Technologies Koalati Inc.<br>
+				109 chemin du Quai, Saint-Gédéon<br>
+				QC  G0W 2P0<br>
+				Canada<br>
+				<a href="mailto:info@koalati.com">Report this email as spam</a>
+			</div>
+		</center>
+	</row>
+	<spacer size-sm="30" size-lg="60"></spacer>
+{%- endapply -%}
