@@ -2,6 +2,6 @@ framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
         envelope:
-            sender: 'Paddle to ChartMogul by Koalati <noreply@koalati.com>'
+            sender: 'saasync by Koalati <noreply@koalati.com>'
         headers:
-            from: 'Paddle to ChartMogul by Koalati <noreply@koalati.com>'
+            from: 'saasync by Koalati <noreply@koalati.com>'
