@@ -43,7 +43,7 @@ class User implements UserInterface
     #[ORM\Column(type: 'datetime')]
     private $lastLoginDate;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $lastSyncDate;
 
     #[ORM\OneToOne(mappedBy: 'owner', targetEntity: DataSource::class, cascade: ['persist', 'remove'])]
