@@ -11,6 +11,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Paddle\API;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\Exception\UnrecoverableMessageHandlingException;
 
 class Synchronizer
@@ -26,6 +27,7 @@ class Synchronizer
 		private CustomerSynchronizer $customerSynchronizer,
 		private PaymentSynchronizer $paymentSynchronizer,
 		private EntityManagerInterface $entityManager,
+		private LoggerInterface $logger,
 	)
 	{
 	}
@@ -44,6 +46,7 @@ class Synchronizer
 			$this->initPaddle();
 		} catch (Exception $e) {
 			$this->writeLog("❌ ERROR: Could not initiate API connection to Paddle. Please check your API credentials in the settings page.");
+			$this->logger->critical($e->getMessage(), $e->getTrace());
 			return $this->endSyncProcess(true);
 		}
 
@@ -52,6 +55,7 @@ class Synchronizer
 			$this->initChartMogul();
 		} catch (Exception $e) {
 			$this->writeLog("❌ ERROR: Could not initiate API connection to ChartMogul. Please check your API credentials in the settings page.");
+			$this->logger->critical($e->getMessage(), $e->getTrace());
 			return $this->endSyncProcess(true);
 		}
 
@@ -61,6 +65,7 @@ class Synchronizer
 			$this->writeLog("ChartMogul sync completed.");
 		} catch (Exception $e) {
 			$this->writeLog("❌ ERROR: An error occured while fetching or syncing data. For more information, contact us and ask us about the error from log entry #" . $this->log->getId());
+			$this->logger->critical($e->getMessage(), $e->getTrace());
 			return $this->endSyncProcess(true);
 		}
 
@@ -71,6 +76,7 @@ class Synchronizer
 			$this->entityManager->clear();
 			$this->entityManager->refresh($this->user);
 			$this->writeLog("❌ ERROR: We failed to save the status of your data sync to our servers. Your data was likely synced correctly to ChartMogul, but subsequent syncs may fail or be incorrect. Please contact us for more information");
+			$this->logger->critical($e->getMessage(), $e->getTrace());
 			return $this->endSyncProcess(true);
 		}
 
