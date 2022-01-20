@@ -8,11 +8,13 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
-use Symfony\Component\Security\Http\LoginLink\LoginLinkNotification;
 
 class SecurityController extends AbstractController
 {
@@ -75,4 +77,20 @@ class SecurityController extends AbstractController
         // if it's not submitted, render the "login" form
         return $this->render('security/login.html.twig');
     }
+
+    /**
+     * @Route("/settings/delete-account", name="delete_account")
+     */
+    public function deleteAccount(EntityManagerInterface $entityManager, RequestStack $requestStack, TokenStorageInterface $tokenStorage): Response
+	{
+		$user = $this->getUser();
+
+		$tokenStorage->setToken(null);
+		$requestStack->getSession()->invalidate();
+
+		$entityManager->remove($user);
+		$entityManager->flush();
+
+		return $this->redirectToRoute("login");
+	}
 }

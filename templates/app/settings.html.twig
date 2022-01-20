@@ -10,4 +10,11 @@
 	<hr>
 
 	{{ form(form) }}
+
+	<hr>
+
+	<h2>Account actions</h2>
+	<div class="notice warning">The account actions below are immediate and cannot be undone. Please be careful.</div>
+	<a href="{{ path("delete_account") }}" class="button danger">Delete this magicrr account</a>
+	<!--a href="{{ path("delete_account") }}" class="button danger">Reset ChartMogul data source</a-->
 {% endblock %}

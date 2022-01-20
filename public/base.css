@@ -28,6 +28,12 @@ button:hover,
 .button:hover { color: #edff5f; }
 button:active,
 .button:active { color: black; background-color: #edff5f; border-color: #edff5f;  }
+button.danger,
+.button.danger { color: #ff8a93; }
+button.danger:hover,
+.button.danger:hover { color: #ff4d5b; }
+button.danger:active,
+.button.danger:active { color: white; background-color: #ff8a93; border-color: #ff8a93;  }
 
 .notice { padding: 1rem; margin: 1rem 0; background-color: #bde7ff; background-image: linear-gradient(185deg, #bde7ff, #d1eeff); background-size: cover; border-radius: .5rem; }
 .notice a { font-weight: 500; color: #000; }

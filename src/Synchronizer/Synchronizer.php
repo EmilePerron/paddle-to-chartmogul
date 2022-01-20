@@ -114,6 +114,9 @@ class Synchronizer
 		// Initialize API connections
 		Configuration::getDefaultConfiguration()->setApiKey($this->user->getChartMogulApiKey());
 
+		// Try a basic request to ChartMogul to catch API connection issues early on.
+		ChartMogulDataSource::all();
+
 		// Get (or create) the ChartMogul data source
 		$this->dataSource = $this->initDataSource($this->user);
 	}
@@ -124,9 +127,6 @@ class Synchronizer
 	private function initDataSource(): DataSource
 	{
 		if ($this->user->getDataSource()) {
-			// Try a basic request to ChartMogul to catch API connection issues early on.
-			ChartMogulDataSource::get($this->user->getDataSource()->getChartMogulId());
-
 			return $this->user->getDataSource();
 		}
 
