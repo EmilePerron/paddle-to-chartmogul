@@ -16,7 +16,6 @@ class Customer
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-	#[Encrypted]
     private $paddleId;
 
     #[ORM\Column(type: 'string', length: 512)]

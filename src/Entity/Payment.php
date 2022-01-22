@@ -16,7 +16,6 @@ class Payment
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-	#[Encrypted]
     private $paddleId;
 
     #[ORM\ManyToOne(targetEntity: Subscription::class)]
