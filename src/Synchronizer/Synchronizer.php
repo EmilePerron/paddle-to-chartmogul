@@ -3,6 +3,7 @@
 namespace App\Synchronizer;
 
 use App\Entity\DataSource;
+use App\Entity\SyncException;
 use App\Entity\SyncLog;
 use App\Entity\User;
 use ChartMogul\Configuration;
@@ -47,7 +48,7 @@ class Synchronizer
 		} catch (Exception $e) {
 			$this->writeLog("❌ ERROR: Could not initiate API connection to Paddle. Please check your API credentials in the settings page.");
 			$this->logger->critical($e->getMessage(), $e->getTrace());
-			return $this->endSyncProcess(true);
+			return $this->endSyncProcess(true, $e);
 		}
 
 		try {
@@ -56,7 +57,7 @@ class Synchronizer
 		} catch (Exception $e) {
 			$this->writeLog("❌ ERROR: Could not initiate API connection to ChartMogul. Please check your API credentials in the settings page.");
 			$this->logger->critical($e->getMessage(), $e->getTrace());
-			return $this->endSyncProcess(true);
+			return $this->endSyncProcess(true, $e);
 		}
 
 		try {
@@ -66,7 +67,7 @@ class Synchronizer
 		} catch (Exception $e) {
 			$this->writeLog("❌ ERROR: An error occured while fetching or syncing data. For more information, contact us and ask us about the error from log entry #" . $this->log->getId());
 			$this->logger->critical($e->getMessage(), $e->getTrace());
-			return $this->endSyncProcess(true);
+			return $this->endSyncProcess(true, $e);
 		}
 
 		try {
@@ -77,7 +78,7 @@ class Synchronizer
 			$this->entityManager->refresh($this->user);
 			$this->writeLog("❌ ERROR: We failed to save the status of your data sync to our servers. Your data was likely synced correctly to ChartMogul, but subsequent syncs may fail or be incorrect. Please contact us for more information");
 			$this->logger->critical($e->getMessage(), $e->getTrace());
-			return $this->endSyncProcess(true);
+			return $this->endSyncProcess(true, $e);
 		}
 
 		$this->endSyncProcess(false);
@@ -218,7 +219,7 @@ class Synchronizer
 		return $this;
 	}
 
-	private function endSyncProcess(bool $failed = false)
+	private function endSyncProcess(bool $failed = false, ?Exception $exception = null)
 	{
 		if (!$failed) {
 			$this->writeLog("All done - wrapping up...");
@@ -227,6 +228,14 @@ class Synchronizer
 		$this->user->setLastSyncDate(new DateTime());
 		$this->log->setEndDate(new DateTime())
 				->setHasFailed($failed);
+
+		if ($exception) {
+			$syncException = (new SyncException())
+				->setMessage($exception->getMessage())
+				->setTrace($exception->getTraceAsString())
+				->setRelatedLog($this->log);
+			$this->entityManager->persist($syncException);
+		}
 
 		$this->entityManager->persist($this->user);
 		$this->entityManager->persist($this->log);
