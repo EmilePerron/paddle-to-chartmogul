@@ -29,7 +29,6 @@ class PublicController extends AbstractController
     {
 		$routes = [
 			"home",
-			"login",
 		];
 
         return $this->render('public/sitemap.xml.twig', [
