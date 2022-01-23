@@ -14,7 +14,11 @@ hr { margin: 3rem 0; height: 1px; background-color: #eee; border: none; }
 
 .container { width: 95%; max-width: 640px; padding: 3rem 0; margin: auto; }
 .container.small { max-width: 440px; }
+
 .card { width: 100%; padding: 3rem; background-color: white; border-radius: 1.5rem; box-shadow: 0 6px 10px 0 rgb(22 36 52 / 10%), 0 6px 5px 3px rgb(22 36 52 / 3%), 0 10px 30px 30px rgb(22 36 52 / 2%); }
+.card a:not(.button) { color: #4671c5; }
+.card a:not(.button):visited { color: #9242bb; }
+.card a:not(.button):hover { color: #000; }
 
 label { display: block; margin-bottom: 3px; font-weight: 600; line-height: 1.35; color: #222; }
 
@@ -43,3 +47,8 @@ button.danger:active,
 .notice.danger { background-color: #ffe7a7; background-image: linear-gradient(185deg, #ffc2c2, #f97b8b); }
 .notice.success { background-color: #e5ffbd; background-image: linear-gradient(185deg, #e5ffbd, #bdffbd); }
 .card > .notice:first-child { margin-top: 0; }
+
+footer { text-align: center; }
+footer p { font-size: .9rem; line-height: 1.5; color: #13204d; }
+footer a { color: #13204d; }
+footer a:hover { color: #000; }

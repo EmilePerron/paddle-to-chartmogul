@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}app{% endblock %} - magicrr</title>
-        <link rel="stylesheet" href="{{ asset("base.css") }}">
-        <link rel="stylesheet" href="{{ asset("app.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/base.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/app.css") }}">
 
 		<link rel="apple-touch-icon" sizes="152x152" href="{{ asset("apple-touch-icon.png") }}">
 		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset("favicon-32x32.png") }}">
@@ -16,6 +16,8 @@
 
 		<meta name="description" content="Sync your Paddle subscriptions to ChartMogul automagically.">
 		<meta property="og:image" content="{{ absolute_url(asset("images/magicrr-social-share.png")) }}">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
         {% block stylesheets %}
 
@@ -47,6 +49,15 @@
 					{% block body %}{% endblock %}
 				</div>
 			</div>
+
+			<footer>
+				<div class="container">
+					<p>
+						magicrr is brought to you by <a href="https://www.koalati.com" target="_blank">Koalati</a>.<br>
+						You can provide feedback to the creator <a href="https://twitter.com/intent/tweet?screen_name=cunrakes&text=Hey!+I+checked+out+magicrr.koalati.com+and..." target="_blank">on Twitter</a>.
+					</p>
+				</div>
+			</footer>
 		</div>
 
         {% block javascripts %}

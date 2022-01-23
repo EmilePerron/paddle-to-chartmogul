@@ -11,18 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     /**
-     * @Route("/")
-     */
-    public function indexRedirect()
-    {
-        if ($this->isGranted("IS_AUTHENTICATED_FULLY")) {
-            return $this->redirectToRoute("dashboard");
-        }
-
-        return $this->redirectToRoute("login");
-    }
-
-    /**
      * @Route("/app", name="dashboard")
      */
     public function dashboard()

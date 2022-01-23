@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paddle to ChartMogul integration for SaaS businesses{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/public.css") }}">
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div class="container">
+			<a href="/">
+				<img src="{{ asset("images/logo.png") }}" alt="magicrr" height="75">
+			</a>
+			<nav>
+				<a href="{{ path("login") }}" class="button">Log in</a>
+			</nav>
+		</div>
+	</header>
+
+	<div id="page-wrapper">
+		<section id="hero">
+			<div class="container">
+				<div id="hero">
+					<h1>Paddle → ChartMogul integration for SaaS businesses</h1>
+					<p>Set up your account in just two minutes.<br> No code required.</p>
+					<a href="{{ path("login") }}" class="button">Get started</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="how-it-works" class="sparkles-section">
+			<span class="sparkle" aria-hidden="true">✨</span>
+			<span class="sparkle sparkle-2" aria-hidden="true">✨</span>
+			<span class="sparkle sparkle-3" aria-hidden="true">✨</span>
+			<span class="sparkle sparkle-4" aria-hidden="true">✨</span>
+			<div class="container">
+				<div class="card">
+				<h2>How it works</h2>
+				<ol>
+					<li>
+						<span class="number">#1</span>
+						<strong>Log in</strong>
+						Just enter your email and we'll send you a magic link to log in!
+					</li>
+					<li>
+						<span class="number">#2</span>
+						<strong>Enter your API keys</strong>
+						Find or create your API keys on <a href="https://vendors.paddle.com/authentication" target="_blank">Paddle</a> and <a href="https://help.chartmogul.com/hc/en-us/articles/4407796325906-Creating-and-Managing-API-keys#creating-an-api-key" target="_blank">ChartMogul</a>, and enter them in your account's settings.
+					</li>
+					<li>
+						<span class="number">#3</span>
+						<strong>You're all set!</strong>
+						Your Paddle subscription data will automatically be synchronized with ChartMogul. Enjoy the top-tier SaaS analytics!
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<section>
+			<div class="container">
+				<div class="text-center">
+					<p>What are you waiting for?</p>
+					<a href="{{ path("login") }}" class="button">✨  Get started!  ✨</a>
+				</div>
+			</div>
+		</section>
+	</div>
+{% endblock %}

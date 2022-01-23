@@ -1,0 +1,23 @@
+header { position: sticky; top: 0; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); z-index: 10; }
+header .container { display: flex; max-width: 1080px; padding: 1rem 0; justify-content: space-between; align-items: center; }
+
+h1 { margin-top: 1rem; margin-bottom: 2rem; font-size: 3.5rem; color: #13204d; }
+p { font-size: 1.15rem; line-height: 1.5; }
+h2 { margin-bottom: 3rem; font-size: 2.5rem; }
+
+#hero { padding-bottom: 4rem; text-align: center; }
+#hero .button { padding: 1rem 2rem; margin-top: 1rem; font-size: 1.15rem; }
+
+#page-wrapper { overflow: hidden; }
+.sparkles-section { position: relative; }
+.sparkles-section .container { position: relative; z-index: 2; }
+.sparkles-section .sparkle { font-size: 15vw; position: absolute; top: -1ch; left: 7%; pointer-events: none; user-select: none; }
+.sparkles-section .sparkle-2 { top: 20%; left: inherit; right: -4%; }
+.sparkles-section .sparkle-3 { font-size: 5rem; top: 10%; left: inherit; right: 15%; opacity: .5; }
+.sparkles-section .sparkle-4 { font-size: 3rem; top: 70%; left: 3%; opacity: .5; }
+
+ol { padding: 0; list-style: none; }
+ol li { padding-left: 4ch; margin-bottom: 4ch; font-size: 1.1rem; position: relative; }
+ol li:last-child { margin-bottom: 0; }
+ol li strong { display: block; margin-bottom: .25rem; font-size: 1.25rem; line-height: 1.35; }
+ol li .number { font-size: 3ch; font-weight: 200; line-height: 1; color: #abc6fb; position: absolute; left: -0.5ch; top: -0.25ch; }
