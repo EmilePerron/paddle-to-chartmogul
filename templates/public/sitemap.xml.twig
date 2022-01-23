@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	{% for route in routes %}
 		<url>
-			<loc>{{ absolute_url("route") }}</loc>
+			<loc>{{ absolute_url(path(route)) }}</loc>
 		</url>
 	{% endfor %}
 </urlset>
